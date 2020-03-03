@@ -1,0 +1,4 @@
+export TELEGRAM_TOKEN=1233445:LONGrandomString
+export GITHUB_OAUTH_TOKEN=inserttokenhere
+export CHAT_ID=1234567
+export WEBHOOK_URL=https://something.example.com/telegram
