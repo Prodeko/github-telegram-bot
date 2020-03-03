@@ -39,7 +39,7 @@
 /commits [repo] (esim. `/commits prodeko-org-djangocms)`")
 
 (defn send-tg [message]
-  (tg/send-text token chat-id {:parse_mode "HTML"} message))
+  (tg/send-text token chat-id {:parse_mode "HTML" :disable_web_page_preview true} message))
 
 (defhandler telegram-handler
   (command "start" {}
