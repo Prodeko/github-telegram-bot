@@ -1,4 +1,4 @@
-# Palautebot :link::shipit:
+# Github-Telegram-bot :satellite::hammer:
 
 Telegram bot, joka lähettää viestinwebbitiimin chattiin kun Prodekon Githubiin pusketaan tavaraa.
 
@@ -23,7 +23,11 @@ $ brew install ngrok
 ```
 
 2. Kopioi .envrc.example ja nimeä se .envrc. Konfiguroi tarvittavat muuttujat ja aja `source .envrc`
-
 3. Käynnistä ngrok ajamalla `ngrok http 3000` ja kopioi ngrokin https osoite .envrc tiedostoon
+4. Muuta Githubin webhook asetuksiksi ngrokin https osoite [täältä](https://github.com/organizations/Prodeko/settings/hooks)
+5. Käynnistä kehitysserveri `lein ring server-headless` ja repl `lein repl`
+   - Vaihtoehtoisesti VSCodelle on saatavilla integroitu REPL nimeltään [Calva](https://marketplace.visualstudio.com/items?itemName=betterthantomorrow.calva)
 
-4. Käynnistä kehitysserveri `lein ring server-headless` ja repl `lein repl`
+## Deployaus
+
+Lataa publish Azure App Servicen dashboardin kautta ja tallenna se AZURE_CREDENTIALS nimiseen muuttujaan [täältä](https://github.com/Prodeko/github-telegram-bot/settings/secrets). Tämän jälkeen botti deployautuu automaattisesti [.github/workflows/workflow.yml](.github/workflows/workflow.yml) löytyvän workflown avulla kun commitoidaan tai mergetään masteriin. Mikäli muutit Githubin webhook osoitteeksi ngrokin, muista vaihtaa osoite takaisin https://github-bot.prodeko.org.

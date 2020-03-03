@@ -1,0 +1,45 @@
+# This workflow will build and push a Django application to
+# an Azure Web App on every push to the master branch. The
+# workflow is only
+#
+# To configure this workflow:
+#
+# 1. Set up a secret in your repository named AZURE_CREDENTIALS
+#    with the value of your Azure publish profile.
+
+env:
+  AZURE_WEBAPP_NAME: gh-tg-bot
+  AZURE_WEBAPP_PACKAGE_PATH: ${{ github.workspace }}
+  JAVA_VERSION: "11"
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up Java JDK ${{ env.JAVA_VERSION }}
+        uses: actions/setup-java@v1
+        with:
+          java-version: ${{ env.JAVA_VERSION }}
+
+      - name: Install leiningen
+        uses: DeLaGuardo/setup-clojure@master
+        with:
+          lein: 2.9.2
+
+      - name: Build project
+        run: lein ring uberjar
+
+      - name: Deploy to Azure App Service
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: ${{ env.AZURE_WEBAPP_NAME }}
+          publish-profile: ${{ secrets.AZURE_CREDENTIALS }}
+          package: "${{ env.AZURE_WEBAPP_PACKAGE_PATH }}/target/*standalone.jar"
