@@ -1,6 +1,6 @@
 # Github-Telegram-bot :satellite::hammer:
 
-Telegram bot, joka lähettää viestinwebbitiimin chattiin kun Prodekon Githubiin pusketaan tavaraa.
+Telegram bot, joka lähettää viestin webbitiimin chattiin kun Prodekon Githubiin pusketaan tavaraa.
 
 ## Käyttäminen
 
@@ -30,4 +30,4 @@ $ brew install ngrok
 
 ## Deployaus
 
-Lataa publish Azure App Servicen dashboardin kautta ja tallenna se AZURE_CREDENTIALS nimiseen muuttujaan [täältä](https://github.com/Prodeko/github-telegram-bot/settings/secrets). Tämän jälkeen botti deployautuu automaattisesti [.github/workflows/workflow.yml](.github/workflows/workflow.yml) löytyvän workflown avulla kun commitoidaan tai mergetään masteriin. Mikäli muutit Githubin webhook osoitteeksi ngrokin, muista vaihtaa osoite takaisin https://github-bot.prodeko.org.
+Lataa publish profile Azure App Service dashboardin kautta ja tallenna se AZURE_CREDENTIALS nimiseen muuttujaan [täällä](https://github.com/Prodeko/github-telegram-bot/settings/secrets). Tämän jälkeen botti deployautuu automaattisesti Azureen Github Actioneiden ([.github/workflows/workflow.yml](.github/workflows/workflow.yml)) avulla kun commitoidaan tai mergetään masteriin. Mikäli muutit Githubin webhook osoitteeksi ngrokin kehitystyön ajaksi, muista vaihtaa osoite takaisin https://github-bot.prodeko.org.
