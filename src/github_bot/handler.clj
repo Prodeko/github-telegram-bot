@@ -17,10 +17,10 @@
 
 (defn format-gh-push-message [data]
   (let [{:keys [ref repository commits]} data]
-    (str "🔨 " (count commits) (if (= (count commits) 1) "uusi commit" "uutta committia") " - " (repository :full_name) ":" (str/replace ref #"refs/heads/" "")
+    (str "🔨 " (count commits) (if (= (count commits) 1) " uusi commit" " uutta committia") " - " (repository :full_name) ":" (str/replace ref #"refs/heads/" "")
          (apply str (mapcat (fn [{:keys [id author message url]}]
                               (->>
-                               (into [(str " <a href='" url "'>" (subs id 0 7) "</a> (" (author :username) "): " message)])
+                               (into [(str "<a href='" url "'>" (subs id 0 7) "</a> (" (author :username) "): " message)])
                                (into ["\n\n"]))) commits)))))
 
 (defn format-gh-commits-message [repo data]
