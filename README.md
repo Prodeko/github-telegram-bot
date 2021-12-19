@@ -13,17 +13,14 @@ Komennot:
 
 ## Kehittäminen
 
-1. Asenna java, clojure, leiningen ja ngrok.
+1. Asenna clojure, leiningen ja ngrok.
 
 ```
-$ brew cask install java
-$ brew install clojure
-$ brew install leiningen
-$ brew install ngrok
+$ brew install clojure leiningen ngrok
 ```
 
 2. Kopioi .envrc.example ja nimeä se .envrc. Konfiguroi tarvittavat muuttujat ja aja `source .envrc`
-3. Käynnistä ngrok ajamalla `ngrok http 3000` ja kopioi ngrokin https osoite .envrc tiedostoon
+3. Käynnistä ngrok ajamalla `ngrok http 3000` ja kopioi ngrokin https osoite .envrc tiedoston WEBHOOK_URL muuttujaan
 4. Muuta Githubin webhook asetuksiksi ngrokin https osoite [täältä](https://github.com/organizations/Prodeko/settings/hooks)
 5. Käynnistä kehitysserveri `lein ring server-headless` ja repl `lein repl`
    - Vaihtoehtoisesti VSCodelle on saatavilla integroitu REPL nimeltään [Calva](https://marketplace.visualstudio.com/items?itemName=betterthantomorrow.calva)

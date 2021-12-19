@@ -5,17 +5,17 @@
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
 
-  :dependencies [[org.clojure/clojure "1.10.1"]
-                 [ring/ring-json "0.5.0"]
-                 [ring/ring-core "1.8.1"]
+  :dependencies [[org.clojure/clojure "1.10.3"]
+                 [ring/ring-json "0.5.1"]
+                 [ring/ring-core "1.9.4"]
                  [compojure "1.6.2"]
                  [environ "1.2.0"]
                  [morse "0.4.3"]
-                 [re-graph "0.1.14"]
+                 [re-graph "0.1.16"]
                  [org.eclipse.jetty/jetty-server "9.4.31.v20200723"]]
 
   :plugins [[lein-environ "1.2.0"]
-            [lein-ring "0.12.5"]]
+            [lein-ring "0.12.6"]]
 
   :ring {:handler github-bot.handler/app
          :port 3000
