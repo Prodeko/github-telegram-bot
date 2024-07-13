@@ -1,0 +1,31 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/docker-existing-docker-compose
+{
+	"name": "webbitiimibot",
+	"dockerComposeFile": [
+		"docker-compose.devcontainer.yml"
+	],
+	"service": "webbitiimibot",
+	"workspaceFolder": "/webbitiimibot",
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"rust-lang.rust-analyzer",
+				"tamasfe.even-better-toml",
+				"serayuzgur.crates",
+				"ms-ossdata.vscode-postgresql",
+				"adpyke.vscode-sql-formatter"
+			],
+			"settings": {
+				"[sql]": {
+					"editor.defaultFormatter": "adpyke.vscode-sql-formatter",
+					"editor.tabSize": 4
+				},
+				"[rust]": {
+					"editor.defaultFormatter": "rust-lang.rust-analyzer",
+					"editor.tabSize": 4
+				}
+			}
+		}
+	}
+}
