@@ -1,4 +1,4 @@
-use serde::{Serialize, Deserialize};
+use serde::{Deserialize, Serialize};
 
 #[derive(Serialize, Deserialize, Debug)]
 pub struct PushEvent {
@@ -102,7 +102,6 @@ pub struct Repository {
     pub stargazers: u64,
     pub master_branch: String,
     pub organization: String,
-    pub custom_properties: CustomProperties,
 }
 
 #[derive(Serialize, Deserialize, Debug)]
@@ -136,11 +135,6 @@ pub struct License {
     pub spdx_id: String,
     pub url: Option<String>,
     pub node_id: String,
-}
-
-#[derive(Serialize, Deserialize, Debug)]
-pub struct CustomProperties {
-    // Add fields as needed
 }
 
 #[derive(Serialize, Deserialize, Debug)]

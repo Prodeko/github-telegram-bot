@@ -1,12 +1,12 @@
 mod api_types;
 mod config;
-mod routes;
+mod github;
 
-use axum::Router;
+use api_types::ApiResult;
+use axum::{routing::get, Router};
 use config::Config;
 use dotenvy::dotenv;
 use envconfig::Envconfig;
-use std::net::SocketAddr;
 
 #[tokio::main]
 async fn main() {
@@ -19,12 +19,22 @@ async fn main() {
 async fn serve(config: &Config) {
     let app = router();
 
-    axum::Server::bind(&format!("0.0.0.0:{:?}", config.port).parse().unwrap())
-        .serve(app.into_make_service())
-        .await
-        .unwrap();
+    axum::serve(
+        tokio::net::TcpListener::bind(format!("0.0.0.0:{:?}", config.port))
+            .await
+            .unwrap(),
+        app.into_make_service(),
+    )
+    .await
+    .unwrap()
 }
 
 fn router() -> Router {
-    Router::new().nest("/slack", routes::slack::router())
+    Router::new()
+        .nest("/github", github::router())
+        .route("/", get(health))
+}
+
+async fn health() -> ApiResult<&'static str> {
+    return Ok("ok");
 }
