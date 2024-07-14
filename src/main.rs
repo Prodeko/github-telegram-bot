@@ -6,7 +6,7 @@ mod telegram;
 use std::sync::Arc;
 
 use api_types::ApiResult;
-use axum::{debug_handler, extract::State, routing::get, Router};
+use axum::{debug_handler, routing::get, Router};
 use config::Config;
 use dotenvy::dotenv;
 use envconfig::Envconfig;
@@ -44,7 +44,7 @@ fn router(state: Config) -> Router<()> {
     };
 
     let r = Router::new()
-        .nest("/github", github::router())
+        .nest("/github", github::router(state.clone()))
         .route("/", get(health))
         .with_state(state);
 
@@ -52,6 +52,6 @@ fn router(state: Config) -> Router<()> {
 }
 
 #[debug_handler]
-async fn health(state: State<AppState>) -> ApiResult<&'static str> {
+async fn health() -> ApiResult<&'static str> {
     return Ok("ok");
 }

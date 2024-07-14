@@ -6,9 +6,17 @@ use axum::{
 pub type ApiResult<T> = core::result::Result<T, ApiError>;
 
 #[derive(Debug)]
+pub enum AuthenticationError {
+    HeaderNotFound,
+    InvalidToken,
+}
+
+#[derive(Debug)]
 pub enum ApiError {
     InternalServerError(String),
     GatewayTimeout(String),
+    BadRequest,
+    AuthenticationError(AuthenticationError),
 }
 
 impl IntoResponse for ApiError {
@@ -20,6 +28,13 @@ impl IntoResponse for ApiError {
             ApiError::GatewayTimeout(_) => {
                 (StatusCode::GATEWAY_TIMEOUT, "Gateway timeout").into_response()
             }
+            ApiError::AuthenticationError(AuthenticationError::InvalidToken) => {
+                (StatusCode::UNAUTHORIZED, "Invalid token").into_response()
+            }
+            ApiError::AuthenticationError(AuthenticationError::HeaderNotFound) => {
+                (StatusCode::UNAUTHORIZED, "Authorization header not found").into_response()
+            }
+            ApiError::BadRequest => (StatusCode::BAD_REQUEST, "Bad request").into_response(),
         };
     }
 }
