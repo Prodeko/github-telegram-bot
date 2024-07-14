@@ -7,6 +7,9 @@ edition = "2021"
 axum = { version = "0.7.5", features = ["http1", "http2", "macros", "tokio"] }
 dotenvy = "0.15.7"
 envconfig = "0.10.0"
+reqwest = { version = "0.12.5", features = ["json"] }
+reqwest-middleware = { version = "0.3.2", features = ["json"] }
+reqwest-retry = "0.6.0"
 serde = { version = "1.0.204", features = ["derive"] }
 teloxide = { version = "0.12.2", features = ["webhooks", "webhooks-axum"] }
 tokio = { version = "1.38.0", features = ["macros", "rt-multi-thread"] }

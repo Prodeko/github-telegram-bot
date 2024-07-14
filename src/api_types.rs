@@ -2,28 +2,25 @@ use axum::{
     http::StatusCode,
     response::{IntoResponse, Response},
 };
-use serde::Serialize;
 
 pub type ApiResult<T> = core::result::Result<T, ApiError>;
 
 #[derive(Debug)]
 pub enum ApiError {
-    InternalServerError,
-}
-
-impl Serialize for ApiError {
-    fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
-    where
-        S: serde::Serializer,
-    {
-        todo!()
-    }
+    InternalServerError(String),
+    GatewayTimeout(String),
 }
 
 impl IntoResponse for ApiError {
     fn into_response(self) -> Response {
-        println!("{:?}", self);
-        (StatusCode::INTERNAL_SERVER_ERROR, "Unhandled client error").into_response()
+        return match self {
+            ApiError::InternalServerError(_) => {
+                (StatusCode::INTERNAL_SERVER_ERROR, "Unhandled server error").into_response()
+            }
+            ApiError::GatewayTimeout(_) => {
+                (StatusCode::GATEWAY_TIMEOUT, "Gateway timeout").into_response()
+            }
+        };
     }
 }
 
