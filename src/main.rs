@@ -7,9 +7,10 @@ use std::sync::Arc;
 
 use api_types::ApiResult;
 use axum::{debug_handler, routing::get, Router};
-use config::Config;
+use config::{Config, Settings};
 use dotenvy::dotenv;
 use envconfig::Envconfig;
+use telegram::send_message;
 
 #[derive(Clone)]
 struct AppState {
@@ -26,7 +27,14 @@ async fn main() {
 
 async fn serve(config: Config) {
     let port = config.port.clone();
+    let chat_id = config.chat_id.clone();
+    let telegram_url = config.authorized_telegram_url();
+
     let app = router(config);
+
+    send_message("Webbitiimibot running!", chat_id, telegram_url.clone())
+        .await
+        .unwrap();
 
     axum::serve(
         tokio::net::TcpListener::bind(format!("0.0.0.0:{:?}", port))
