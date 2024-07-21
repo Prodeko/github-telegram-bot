@@ -9,7 +9,7 @@ dotenvy = "0.15.7"
 envconfig = "0.10.0"
 hex = "0.4.3"
 hmac = "0.12.1"
-reqwest = { version = "0.12.5", features = ["json", "rustls-tls"] }
+reqwest = { version = "0.12.5", features = ["json", "rustls-tls"], default-features = false }
 reqwest-middleware = { version = "0.3.2", features = ["json"] }
 reqwest-retry = "0.6.0"
 serde = { version = "1.0.204", features = ["derive"] }
