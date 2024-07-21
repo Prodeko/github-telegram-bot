@@ -16,5 +16,4 @@ FROM scratch
 WORKDIR /webbitiimibot
 
 COPY --from=build-stage /webbitiimibot/output_binary /webbitiimibot/output_binary
-COPY --from=build-stage /webbitiimibot/src/static /webbitiimibot/src/static
 CMD /webbitiimibot/output_binary
