@@ -14,4 +14,4 @@ reqwest-middleware = { version = "0.3.2", features = ["json"] }
 reqwest-retry = "0.6.0"
 serde = { version = "1.0.204", features = ["derive"] }
 sha2 = "0.10.8"
-tokio = { version = "1.38.0", features = ["macros", "rt-multi-thread"] }
+tokio = { version = "1.39.2", features = ["macros", "rt-multi-thread"] }
