@@ -70,7 +70,7 @@ jobs:
       - name: Deploy from ACR
         run: |
           az webapp config container set \
-            --container-image-name gh-tg-bot/gh-tg-bot:${{ github.sha }} \
+            --container-image-name ${{ secrets.REGISTRY_NAME }}.azurecr.io/gh-tg-bot/gh-tg-bot:${{ github.sha }} \
             --container-registry-url https://${{ secrets.REGISTRY_NAME }}.azurecr.io \
             --subscription ${{ secrets.SUBSCRIPTION }} \
             --resource-group prodeko-rg \
