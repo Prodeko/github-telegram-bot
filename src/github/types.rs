@@ -7,15 +7,15 @@ pub struct PushEvent {
     pub after: String,
     pub repository: Repository,
     pub pusher: Pusher,
-    pub organization: Organization,
+    pub organization: Option<Organization>, // Organization can be null or missing
     pub sender: Sender,
     pub created: bool,
     pub deleted: bool,
     pub forced: bool,
-    pub base_ref: Option<String>,
+    pub base_ref: Option<String>, // Nullable
     pub compare: String,
     pub commits: Vec<Commit>,
-    pub head_commit: Commit,
+    pub head_commit: Option<Commit>, // Can be null if no commits are present
 }
 
 #[derive(Serialize, Deserialize, Debug)]
@@ -27,7 +27,7 @@ pub struct Repository {
     pub private: bool,
     pub owner: Owner,
     pub html_url: String,
-    pub description: Option<String>,
+    pub description: Option<String>, // Nullable
     pub fork: bool,
     pub url: String,
     pub forks_url: String,
@@ -73,11 +73,11 @@ pub struct Repository {
     pub ssh_url: String,
     pub clone_url: String,
     pub svn_url: String,
-    pub homepage: Option<String>,
+    pub homepage: Option<String>, // Nullable
     pub size: u64,
     pub stargazers_count: u64,
     pub watchers_count: u64,
-    pub language: Option<String>,
+    pub language: Option<String>, // Nullable
     pub has_issues: bool,
     pub has_projects: bool,
     pub has_downloads: bool,
@@ -85,11 +85,11 @@ pub struct Repository {
     pub has_pages: bool,
     pub has_discussions: bool,
     pub forks_count: u64,
-    pub mirror_url: Option<String>,
+    pub mirror_url: Option<String>, // Nullable
     pub archived: bool,
     pub disabled: bool,
     pub open_issues_count: u64,
-    pub license: Option<License>,
+    pub license: Option<License>, // Nullable
     pub allow_forking: bool,
     pub is_template: bool,
     pub web_commit_signoff_required: bool,
@@ -100,19 +100,19 @@ pub struct Repository {
     pub watchers: u64,
     pub default_branch: String,
     pub stargazers: u64,
-    pub master_branch: String,
-    pub organization: String,
+    pub master_branch: Option<String>, // Nullable, sometimes missing
+    pub organization: Option<String>, // Nullable, sometimes missing
 }
 
 #[derive(Serialize, Deserialize, Debug)]
 pub struct Owner {
     pub name: String,
-    pub email: Option<String>,
+    pub email: Option<String>, // Nullable
     pub login: String,
     pub id: u64,
     pub node_id: String,
     pub avatar_url: String,
-    pub gravatar_id: String,
+    pub gravatar_id: Option<String>, // Nullable
     pub url: String,
     pub html_url: String,
     pub followers_url: String,
@@ -133,7 +133,7 @@ pub struct License {
     pub key: String,
     pub name: String,
     pub spdx_id: String,
-    pub url: Option<String>,
+    pub url: Option<String>, // Nullable
     pub node_id: String,
 }
 
@@ -156,7 +156,7 @@ pub struct Organization {
     pub members_url: String,
     pub public_members_url: String,
     pub avatar_url: String,
-    pub description: String,
+    pub description: Option<String>, // Nullable
 }
 
 #[derive(Serialize, Deserialize, Debug)]
@@ -165,7 +165,7 @@ pub struct Sender {
     pub id: u64,
     pub node_id: String,
     pub avatar_url: String,
-    pub gravatar_id: String,
+    pub gravatar_id: Option<String>, // Nullable
     pub url: String,
     pub html_url: String,
     pub followers_url: String,
@@ -200,5 +200,5 @@ pub struct Commit {
 pub struct CommitAuthor {
     pub name: String,
     pub email: String,
-    pub username: String,
+    pub username: Option<String>, // Nullable, sometimes missing
 }

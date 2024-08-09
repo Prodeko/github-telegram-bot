@@ -7,7 +7,7 @@ fn ref_to_branch<'a>(ref_: &'a str) -> &'a str {
 fn format_commit(commit: &Commit) -> String {
     let short_sha: String = commit.id.chars().take(7).collect();
     let url = &commit.url;
-    let author = &commit.author.username;
+    let author = &commit.author.name;
     let message = &commit.message;
     return format!("[{short_sha}]({url}) ({author}): {message}");
 }
