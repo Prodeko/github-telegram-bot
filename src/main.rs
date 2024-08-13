@@ -5,19 +5,12 @@ mod telegram;
 
 use std::sync::Arc;
 
-#[cfg(not(target_env = "msvc"))]
-use tikv_jemallocator::Jemalloc;
-
 use api_types::ApiResult;
 use axum::{debug_handler, routing::get, Router};
 use config::{Config, Settings};
 use dotenvy::dotenv;
 use envconfig::Envconfig;
 use telegram::send_message;
-
-#[cfg(not(target_env = "msvc"))]
-#[global_allocator]
-static GLOBAL: Jemalloc = Jemalloc;
 
 #[derive(Clone)]
 struct AppState {
