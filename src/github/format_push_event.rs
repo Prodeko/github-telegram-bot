@@ -8,8 +8,8 @@ fn format_commit(commit: &Commit) -> String {
     let short_sha: String = commit.id.chars().take(7).collect();
     let url = &commit.url;
     let author = &commit.author.name;
-    let message = &commit.message;
-    return format!("[{short_sha}]({url}) ({author}): {message}");
+    let subject = commit.message.lines().next().unwrap_or("");
+    format!("[{short_sha}]({url}) ({author}): {subject}")
 }
 
 pub fn format_push_event(event: &PushEvent) -> String {
