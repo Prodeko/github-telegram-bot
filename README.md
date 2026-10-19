@@ -1,6 +1,10 @@
 # Github-Telegram-bot :satellite::hammer:
 
+TÄMÄ README EI OLE AJANTASAINEN - OIEKASTAAN OLISI EHKÄ PAREMPI VAAN POISTAA TÄÄ EIKÄ JOHTAA HARHAAN MUTTA SIT TÄÄ NÄYTTÄIS TYHJÄLTÄ :D
+(Botti kirjoitettiin kokonaan rustilla uusiksi JVM:n muistivaatimusten vuoksi ja samalla kaikki komennot yms. poistettiin)
+
 Telegram bot, joka lähettää viestin webbitiimin chattiin kun Prodekon Githubiin pusketaan tavaraa.
+
 
 ## Käyttäminen
 
